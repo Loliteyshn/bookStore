@@ -2,12 +2,26 @@
     font-weight: bold;
 }
 
-
-/* .bookList {
-    margin-top: 50px;
-} */
+.bookList {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-items: center;
+}
 
 
 /* .slicedPages {
     background-color: aquamarine;
 } */
+
+.detailsContainer {
+    display: flex;
+    width: 80%;
+    justify-content: center;
+}
+
+.imgContainer {
+    width: 30%;
+}
+
+.descriptionContainer {}

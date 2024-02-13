@@ -1,5 +1,6 @@
 import BookCard from "./BookCard";
 import styles from "../styles/style.module.css";
+import { Link } from "react-router-dom";
 
 let BookList = (props) => {
 
@@ -15,14 +16,17 @@ let BookList = (props) => {
     let slicedPages = pages.slice(curPF, curPL);
     console.log(slicedPages);
 
+    
+
     return (
         <div className={styles.bookList}>
 
             {props.bookList.map((book, i) => (
-                <div key={i}>
+                <Link to={{pathname:`/books/${book.id}`, state: book.id}} >
+                <div key={i} >
                     <span>
                         <BookCard
-                            img={book.volumeInfo.imageLinks.thumbnail}
+                            img={book.volumeInfo.imageLinks.smallThumbnail}
                             title={book.volumeInfo.title}
                             author={book.volumeInfo.authors}
                             published={book.volumeInfo.publishedDate}
@@ -30,6 +34,8 @@ let BookList = (props) => {
                         />
                     </span>
                 </div>
+                </Link>
+                
             ))}
 
             <div className={styles.slicedPages}>
