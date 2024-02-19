@@ -4,6 +4,7 @@ const SET_CURRENT_PAGE = "SET_CURRENT_PAGE";
 const SET_TOTAL_BOOKS_COUNT = "SET_TOTAL_BOOKS_COUNT";
 const SET_START_INDEX = "SET_START_INDEX";
 const SET_PAGE_SIZE = "SET_PAGE_SIZE";
+const SET_PRICE = 'SET_PRICE';
 
 let initialState = {
     inputValue: '',
@@ -12,6 +13,10 @@ let initialState = {
     totalBooksCount: 0,
     startIndex: 0,
     currentPage: 1
+}
+
+let getRandomNumber = (minV = 10, maxV = 100) => {
+    return minV + Math.floor(Math.random() * (maxV - minV + 1))
 }
 
 const searchReducer = (state = initialState, action) => {
@@ -24,7 +29,7 @@ const searchReducer = (state = initialState, action) => {
         case SET_BOOK_LIST:
             return {
                 ...state,
-                bookList: action.bookList
+                bookList: action.bookList,
             }
         case SET_CURRENT_PAGE:
             return {
@@ -46,6 +51,15 @@ const searchReducer = (state = initialState, action) => {
                 ...state,
                 pageSize: action.pageSize
             }
+        case SET_PRICE:
+
+            return {
+                ...state,
+                bookList: state.bookList.map(item => ({
+                    ...item,
+                    price: getRandomNumber()
+                }))
+            }
         default:
             return state;
     }
@@ -57,5 +71,6 @@ export const setCurrentPage = (currentPage) => ({ type: SET_CURRENT_PAGE, curren
 export const setTotalBooksCount = (totalBooksCount) => ({ type: SET_TOTAL_BOOKS_COUNT, totalBooksCount });
 export const setStartIndex = (startIndex) => ({ type: SET_START_INDEX, startIndex });
 export const setPageSize = (pageSize) => ({ type: SET_PAGE_SIZE, pageSize });
+export const setPrice = () => ({ type: SET_PRICE })
 
 export default searchReducer;
