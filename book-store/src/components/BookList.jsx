@@ -1,9 +1,12 @@
 import BookCard from "./BookCard";
 import styles from "../styles/style.module.css";
 import { Link } from "react-router-dom";
+import { connect } from 'react-redux';
+import { addBooksCart } from '../store/cartReducer';
 
 let BookList = (props) => {
 
+    console.log(props);
     let pagesCount = Math.ceil(props.totalBooksCount / props.pageSize);
     let pages = [];
     for (let i = 1; i <= pagesCount; i++) {
@@ -15,27 +18,30 @@ let BookList = (props) => {
     let curPL = curP + 5;
     let slicedPages = pages.slice(curPF, curPL);
     console.log(slicedPages);
-
-    
+    console.log(props.booksCart);
 
     return (
         <div className={styles.bookList}>
 
             {props.bookList.map((book, i) => (
-                <Link to={{pathname:`/books/${book.id}`, state: book.id}} >
                 <div key={i} >
                     <span>
-                        <BookCard
-                            img={book.volumeInfo.imageLinks.smallThumbnail}
-                            title={book.volumeInfo.title}
-                            author={book.volumeInfo.authors}
-                            published={book.volumeInfo.publishedDate}
-                            id={book.id}
-                        />
+                        <Link to={{ pathname: `/books/${book.id}` }} >
+                            <BookCard
+                                img={book.volumeInfo.imageLinks?.thumbnail}
+                                title={book.volumeInfo.title}
+                                author={book.volumeInfo.authors}
+                                published={book.volumeInfo.publishedDate}
+                                id={book.id}
+                                price={book.price}
+                            />
+                        </Link>
+
+                        <button onClick={() => props.addBooksCart(book)}>Add to cart</button>
                     </span>
                 </div>
-                </Link>
-                
+
+
             ))}
 
             <div className={styles.slicedPages}>
@@ -59,4 +65,11 @@ let BookList = (props) => {
     )
 }
 
-export default BookList;
+let mapStateToProps = (state) => {
+    return {
+        booksCart: state.cart.booksCart,
+        isAdded: state.cart.isAdded
+    }
+}
+
+export default connect(mapStateToProps, { addBooksCart })(BookList);
