@@ -1,0 +1,1 @@
+(self.webpackChunk_N_E=self.webpackChunk_N_E||[]).push([[1248],{43894:function(n,u,_){(window.__NEXT_P=window.__NEXT_P||[]).push(["/courses/[courseId]",function(){return _(32653)}])}},function(n){n.O(0,[7888,4167,5883,6298,2306,2653,9774,2888,179],(function(){return u=43894,n(n.s=u);var u}));var u=n.O();_N_E=u}]);

@@ -1,12 +1,9 @@
 import { Link } from "react-router-dom";
 import { connect } from 'react-redux';
 import style from "../styles/style.module.css";
-import cartImg from "../images/cart_icon-icons.com_48341.png";
+import cartImg from "../images/icons8-shopping-cart-32.png";
 
 let Header = (props) => {
-
-    console.log(props);
-
     return (
         <div className={style.header}>
             <Link to={{pathname: '/'}}>
@@ -18,7 +15,6 @@ let Header = (props) => {
             {props.totalCountOfBooks}
             </span>
             </Link>
-            
         </div>
     )
 }

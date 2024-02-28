@@ -5,8 +5,6 @@ import { connect } from 'react-redux';
 import { addBooksCart } from '../store/cartReducer';
 
 let BookList = (props) => {
-
-    console.log(props);
     let pagesCount = Math.ceil(props.totalBooksCount / props.pageSize);
     let pages = [];
     for (let i = 1; i <= pagesCount; i++) {
@@ -17,12 +15,9 @@ let BookList = (props) => {
     let curPF = curP - 5 < 0 ? 0 : curP - 5;
     let curPL = curP + 5;
     let slicedPages = pages.slice(curPF, curPL);
-    console.log(slicedPages);
-    console.log(props.booksCart);
 
     return (
         <div className={styles.bookList}>
-
             {props.bookList.map((book, i) => (
                 <div key={i} >
                     <span>
@@ -36,12 +31,9 @@ let BookList = (props) => {
                                 price={book.price}
                             />
                         </Link>
-
                         <button onClick={() => props.addBooksCart(book)}>Add to cart</button>
                     </span>
                 </div>
-
-
             ))}
 
             <div className={styles.slicedPages}>

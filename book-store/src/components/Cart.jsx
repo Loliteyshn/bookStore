@@ -2,11 +2,9 @@ import { connect } from 'react-redux';
 import { useEffect } from 'react';
 import { removeBooksFromCart, setTotalPrice, setDecreaseValue, setIncreaseValue } from '../store/cartReducer';
 import styles from '../styles/style.module.css';
+import deleteImg from "../images/icons8-delete-30.png";
 
 let Cart = (props) => {
-
-    console.log(props);
-
     let handleRemove = (id) => {
         props.removeBooksFromCart(id);
     }
@@ -30,14 +28,15 @@ let Cart = (props) => {
 
     return (
         <div className={styles.cartContainer}>
+            {props.booksCart.length === 0 ? <h2>The basket is empty</h2> : null}
 
             <div className={styles.cartItemsContainer}>
                 {props.booksCart.map((book, i) => (
                     <div className={styles.cartItems}>
                         <div className={styles.cartItem}>
-                        <img src={book.img} className={styles.cartImg}/>
+                            <img src={book.img} className={styles.cartImg} />
                             <div key={i} className={styles.cartItemText}>
-                                
+
                                 <h2>{book.title}</h2>
                                 <h3>{book.price}$</h3>
                                 <div>
@@ -45,21 +44,17 @@ let Cart = (props) => {
                                     <input type="number" min={1} value={book.ownQuantity} />
                                     <button onClick={() => props.setIncreaseValue(book.id)}>+</button>
                                 </div>
-                            </div>
-                            <div>
-                                <button onClick={() => handleRemove(book.id)}>Remove</button>
+                                <button className={styles.removeBtn} onClick={() => handleRemove(book.id)}>Remove</button>
                             </div>
                         </div>
-
-
-
                     </div>
                 ))}
             </div>
 
 
-            <div>
+            <div className={styles.totalPrice}>
                 <h3>Total price: {props.totalPrice}</h3>
+                <button>Order</button>
             </div>
         </div>
     )
