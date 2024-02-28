@@ -6,16 +6,19 @@ import { Route } from 'react-router-dom';
 import BookDetails from './components/BookDetails';
 import Cart from './components/Cart';
 import Header from './components/Header';
+import styles from './styles/style.module.css';
 
 function App() {
   return (
     <div className="App">
       <Header />
-      <Routes>
-        <Route path='/' element={<Home />}/>
-        <Route path='/books/:id' element={<BookDetails />}/>
-        <Route path='/cart' element={<Cart />}/>
-      </Routes>
+      <div className={styles.body}>
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path='/books/:id' element={<BookDetails />} />
+          <Route path='/cart' element={<Cart />} />
+        </Routes>
+      </div>
     </div>
   );
 }

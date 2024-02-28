@@ -14,12 +14,12 @@ let BookDetails = (props) => {
         const fetchData = async() => {
             try {
                 const response = await axios.get(`https://www.googleapis.com/books/v1/volumes/${id}`);
+                console.log(response.data.volumeInfo);
                 props.setBook(response.data.volumeInfo);
             } catch(error) {
                 console.log(error);
             }
         }
-
         fetchData();
     });
 
@@ -28,6 +28,7 @@ let BookDetails = (props) => {
 
         <div className={styles.descriptionContainer}>
             <h2>{props.book?.title}</h2>
+            <h3>{props.book?.publishedDate}</h3>
             <p>{props.book?.subtitle}</p>
             <h3>Description</h3>
             <p>{props.book?.description}</p>

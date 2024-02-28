@@ -9,9 +9,6 @@ let initialState = {
     booksCart: [],
     totalCountOfBooks: null,
     totalPrice: null,
-
-    // price: null
-    // isAdded: false
 }
 
 const cartReducer = (state = initialState, action) => {
