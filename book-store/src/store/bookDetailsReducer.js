@@ -1,7 +1,7 @@
+import { bookApi } from "../api/api";
+
 const SET_ID = 'SET_ID';
 const SET_BOOK = "SET_BOOK";
-
-
 
 let initialState = {
     id: null,
@@ -25,9 +25,13 @@ const bookDetailsReducer = (state = initialState, action) => {
     }
 }
 
-
-
 export const setId = (id) => ({ type: SET_ID, id });
 export const setBook = (book) => ({ type: SET_BOOK, book });
+
+export const getBook = (id) => (dispatch) => {
+    bookApi.getBook(id).then(data => {
+        dispatch(setBook(data.volumeInfo));
+    })
+}
 
 export default bookDetailsReducer;

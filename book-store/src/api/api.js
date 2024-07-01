@@ -12,5 +12,9 @@ export const bookApi = {
     getBooksByPage(inputValue, pageNumber, pageSize) {
         return instanse.get(`?q=${inputValue}&startIndex=${pageNumber}&maxResults=${pageSize}`)
             .then(response => response.data);
+    },
+    getBook(id) {
+        return instanse.get(`/${id}`)
+            .then(response => response.data);
     }
 }

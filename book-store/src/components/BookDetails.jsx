@@ -1,9 +1,7 @@
-import { Component } from 'react'
 import { useParams } from "react-router-dom";
-import { setBook, setId } from "../store/bookDetailsReducer";
+import { getBook } from "../store/bookDetailsReducer";
 import { connect } from "react-redux";
 import { useEffect } from 'react';
-import axios from 'axios';
 import styles from "../styles/style.module.css";
 
 
@@ -11,16 +9,7 @@ let BookDetails = (props) => {
     const { id } = useParams()
 
     useEffect(() => {
-        const fetchData = async() => {
-            try {
-                const response = await axios.get(`https://www.googleapis.com/books/v1/volumes/${id}`);
-                console.log(response.data.volumeInfo);
-                props.setBook(response.data.volumeInfo);
-            } catch(error) {
-                console.log(error);
-            }
-        }
-        fetchData();
+        props.getBook(id);
     });
 
     return <div className={styles.detailsContainer}>
@@ -45,6 +34,4 @@ let mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, {
-    setBook, setId
-})(BookDetails);
+export default connect(mapStateToProps, { getBook })(BookDetails);

@@ -24,14 +24,12 @@ const cartReducer = (state = initialState, action) => {
                     ownQuantity: 1,
                     price: action.booksCart.price
                 }
-                console.log("nui, se dobavleste", cart);
                 return {
                     ...state,
                     booksCart: [...state.booksCart, cart],
                     totalCountOfBooks: state.totalCountOfBooks + 1
                 }
             }
-            console.log("este in korzina", action.booksCart);
             return {
                 ...state,
                 booksCart: state.booksCart.map(item =>

@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import SearchArea from "./SearchArea";
-import { setSearchValue, setBookList, setCurrentPage, setTotalBooksCount, setStartIndex, setPageSize, setPrice, setFilterPrice, setIsEmpty, getBooks, getBooksByPage } from "../store/searchReducer";
+import { setSearchValue, setCurrentPage, setStartIndex, setPageSize, setFilterPrice, getBooks, getBooksByPage } from "../store/searchReducer";
 import BookList from "./BookList";
 
 let SearchAreaContainer = (props) => {
@@ -24,7 +24,6 @@ let SearchAreaContainer = (props) => {
     return <div>
         <SearchArea inputValue={props.inputValue}
             setSearchValue={props.setSearchValue}
-            setBookList={props.setBookList}
             onHandleSearch={onHandleSearch}
             setFilterPrice={props.setFilterPrice} />
         <BookList bookList={props.bookList}
@@ -49,7 +48,7 @@ let mapStateToProps = (state) => {
 
 
 export default connect(mapStateToProps, {
-    setSearchValue, setBookList, setCurrentPage,
-    setTotalBooksCount, setStartIndex, setPageSize,
-    setPrice, setFilterPrice, setIsEmpty, getBooks, getBooksByPage
+    setSearchValue, setCurrentPage,
+    setStartIndex, setPageSize,
+    setFilterPrice, getBooks, getBooksByPage
 })(SearchAreaContainer);

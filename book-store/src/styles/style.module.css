@@ -2,8 +2,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Kode+Mono:wght@400..700&family=Lora:ital,wght@0,400..700;1,400..700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Kode+Mono:wght@400..700&family=Lora:ital,wght@0,400..700;1,400..700&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap');
 .header {
-    position: fixed;
-    top: 0;
+    /* position: fixed;
+    top: 0; */
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -14,7 +14,7 @@
 }
 
 .body {
-    margin-top: 4%;
+    margin-top: 0 auto;
 }
 
 .mainPage {}
@@ -28,23 +28,26 @@
 
 .mainText {
     position: absolute;
-    top: 30%;
+    top: 15%;
     left: 10%;
 }
 
 .mainText h3 {
     font-family: "Inknut Antiqua", serif;
     font-weight: 400;
+    font-size: 3.5rem;
 }
 
 .mainText h1 {
     font-family: "Lora", serif;
     font-weight: 100;
+    font-size: 3.5rem;
 }
 
 .mainText p {
     font-family: "Nunito Sans", sans-serif;
     font-weight: 400;
+    font-size: 2rem;
 }
 
 .searchArea {
@@ -201,3 +204,84 @@
     left: 10%;
     margin-top: 50px;
 }
+
+@media screen and (max-width: 2250px) {
+    .mainText {
+        top: 12%;
+        left: 8%;
+    }
+    .mainText h3 {
+        font-size: 3rem;
+    }
+    .mainText h1 {
+        font-size: 3rem;
+    }
+    .mainText p {
+        font-size: 2rem;
+    }
+}
+
+@media screen and (max-width: 1940px) {
+    .mainText {
+        top: 10%;
+    }
+    .mainText h3 {
+        font-size: 2.5rem;
+    }
+    .mainText h1 {
+        font-size: 2.5rem;
+    }
+    .mainText p {
+        font-size: 1.5rem;
+    }
+}
+
+@media screen and (max-width: 1550px) {
+    .mainText {
+        top: 10%;
+        width: 40%;
+    }
+    .mainText h3 {
+        font-size: 1.7rem;
+    }
+    .mainText h1 {
+        font-size: 1.7rem;
+    }
+    .mainText p {
+        font-size: 1.5rem;
+    }
+}
+
+@media screen and (max-width: 1280px) {
+    .mainText {
+        left: 5%;
+        width: 50%;
+    }
+    .mainText h3 {
+        font-size: 1.5rem;
+    }
+    .mainText h1 {
+        font-size: 1.5rem;
+    }
+    .mainText p {
+        font-size: 1.2rem;
+    }
+}
+
+@media screen and (max-width: 1050px) {
+    .mainText {
+        top: 15%;
+        width: 50%;
+    }
+    .mainText h3 {
+        font-size: 1.2rem;
+    }
+    .mainText h1 {
+        font-size: 1.2rem;
+    }
+    .mainText p {
+        font-size: 1rem;
+    }
+}
+
+@media screen and (max-width: 1050px) {}

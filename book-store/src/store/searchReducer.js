@@ -66,13 +66,11 @@ const searchReducer = (state = initialState, action) => {
             }
         case SET_FILTER_PRICE:
             const sortedBooks = [...state.bookList].sort((a, b) => a.price - b.price);
-            console.log(sortedBooks, 'dfs');
             return {
                 ...state,
                 bookList: sortedBooks
             };
         case IS_EMPTY:
-            console.log("tut", state.isEmpty);
             return {
                 ...state,
                 isEmpty: true
