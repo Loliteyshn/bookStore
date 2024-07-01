@@ -1,40 +1,24 @@
-import { Component } from "react";
 import { connect } from "react-redux";
 import SearchArea from "./SearchArea";
-import { setSearchValue, setBookList, setCurrentPage, setTotalBooksCount, setStartIndex, setPageSize, setPrice, setFilterPrice, setIsEmpty } from "../store/searchReducer";
-import axios from "axios";
+import { setSearchValue, setBookList, setCurrentPage, setTotalBooksCount, setStartIndex, setPageSize, setPrice, setFilterPrice, setIsEmpty, getBooks, getBooksByPage } from "../store/searchReducer";
 import BookList from "./BookList";
 
 let SearchAreaContainer = (props) => {
     let onHandleSearch = () => {
-        const fetchData = async () => {
-            try {
-                const response = await axios.get(`https://www.googleapis.com/books/v1/volumes?q=${props.inputValue}&startIndex=${props.startIndex}&maxResults=${props.pageSize}`)
-                props.setBookList(response.data.items);
-                props.setTotalBooksCount(response.data.totalItems)
-                props.setPrice();
-            } catch (err) {
-                alert("Enter the title of the book");
-                console.log(err);
-            }
+        if (!props.inputValue) {
+            alert("Enter the title of the book");
+            return;
         }
-        fetchData();
+        props.getBooks(props.inputValue, props.startIndex, props.pageSize);
     }
 
     let onPageChanged = (pageNumber) => {
         props.setCurrentPage(pageNumber);
-        const fetchData = async () => {
-            try {
-                const response = await axios.get(`https://www.googleapis.com/books/v1/volumes?q=${props.inputValue}&startIndex=${pageNumber}&maxResults=${props.pageSize}`)
-                console.log(response);
-                props.setBookList(response.data.items);
-                props.setPrice();
-            } catch (err) {
-                alert("Enter the title of the book");
-                console.log(err);
-            }
+        if (!props.inputValue) {
+            alert("Enter the title of the book");
+            return;
         }
-        fetchData();
+        props.getBooksByPage(props.inputValue, pageNumber, props.pageSize);
     }
 
     return <div>
@@ -67,5 +51,5 @@ let mapStateToProps = (state) => {
 export default connect(mapStateToProps, {
     setSearchValue, setBookList, setCurrentPage,
     setTotalBooksCount, setStartIndex, setPageSize,
-    setPrice, setFilterPrice, setIsEmpty
+    setPrice, setFilterPrice, setIsEmpty, getBooks, getBooksByPage
 })(SearchAreaContainer);

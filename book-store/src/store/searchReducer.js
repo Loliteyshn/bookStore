@@ -1,3 +1,5 @@
+import { bookApi } from "../api/api";
+
 const SET_SEARCH_VALUE = "SET_SEARCH_VALUE";
 const SET_BOOK_LIST = "SET_BOOK_LIST";
 const SET_CURRENT_PAGE = "SET_CURRENT_PAGE";
@@ -89,5 +91,20 @@ export const setPageSize = (pageSize) => ({ type: SET_PAGE_SIZE, pageSize });
 export const setPrice = () => ({ type: SET_PRICE });
 export const setFilterPrice = () => ({ type: SET_FILTER_PRICE });
 export const setIsEmpty = () => ({ type: IS_EMPTY });
+
+export const getBooks = (inputValue, startIndex, pageSize) => (dispatch) => {
+    bookApi.getBooks(inputValue, startIndex, pageSize).then(data => {
+        dispatch(setBookList(data.items));
+        dispatch(setTotalBooksCount(data.totalItems));
+        dispatch(setPrice());
+    })
+}
+
+export const getBooksByPage = (inputValue, pageNumber, pageSize) => (dispatch) => {
+    bookApi.getBooksByPage(inputValue, pageNumber, pageSize).then(data => {
+        dispatch(setBookList(data.items));
+        dispatch(setPrice());
+    })
+}
 
 export default searchReducer;
